@@ -231,7 +231,7 @@ function newBoard(){
   const b=Array.from({length:ROWS},()=>Array(COLS).fill(0));
   for(let r=ROWS-4;r<ROWS;r++){
     const gaps=new Set();
-    while(gaps.size<2)gaps.add(Math.floor(Math.random()*COLS));
+    while(gaps.size<3)gaps.add(Math.floor(Math.random()*COLS));
     for(let c=0;c<COLS;c++){if(!gaps.has(c))b[r][c]=rndColor();}
   }
   return b;
