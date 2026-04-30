@@ -231,7 +231,7 @@ function newBoard(){
   const b=Array.from({length:ROWS},()=>Array(COLS).fill(0));
   for(let r=ROWS-4;r<ROWS;r++){
     const gaps=new Set();
-    while(gaps.size<3)gaps.add(Math.floor(Math.random()*COLS));
+    while(gaps.size<2)gaps.add(Math.floor(Math.random()*COLS));
     for(let c=0;c<COLS;c++){if(!gaps.has(c))b[r][c]=rndColor();}
   }
   return b;
@@ -272,7 +272,7 @@ function place(){
     score+=([0,100,300,500,800][cleared]||800)*level;
     if(lines>=level*5){
       level++;
-      dropInterval=Math.max(300,1200-level*80);
+      dropInterval=Math.max(350,1400-level*100);
       playLevelUp();
       spawnLevelUpBurst();
     }
@@ -308,7 +308,7 @@ function loop(ts){
 }
 
 function startGame(){
-  board=newBoard();score=0;level=1;lines=0;dropTimer=0;dropInterval=1200;running=true;
+  board=newBoard();score=0;level=1;lines=0;dropTimer=0;dropInterval=1400;running=true;
   emojiLayer.innerHTML='';
   piece=newPiece();
   document.getElementById('score').textContent=0;
