@@ -316,7 +316,8 @@ function clearLines(){
 }
 function place(){
   piece.shape.forEach((row,ry)=>row.forEach((cell,cx)=>{
-    if(cell)board[piece.y+ry][piece.x+cx]=piece.color;
+    const ny=piece.y+ry, nx=piece.x+cx;
+    if(cell&&ny>=0&&ny<ROWS&&nx>=0&&nx<COLS)board[ny][nx]=piece.color;
   }));
   const cleared=clearLines();
   if(cleared){
@@ -420,7 +421,7 @@ function doRotate(){
   for(const k of kicks){
     if(valid(piece,k,0,r)){piece.x+=k;piece.shape=r;lockTimer=0;return;}
   }
-  if(valid(piece,0,-1,r)){piece.y-=1;piece.shape=r;lockTimer=0;}
+  if(piece.y>0&&valid(piece,0,-1,r)){piece.y-=1;piece.shape=r;lockTimer=0;}
 }
 function doDrop(){if(running)hardDrop();}
 
