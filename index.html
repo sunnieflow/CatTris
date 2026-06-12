@@ -275,7 +275,7 @@ function newBoard(){
   for(let r=ROWS-1;r<ROWS;r++){
     const gaps=new Set();
     while(gaps.size<2)gaps.add(Math.floor(Math.random()*COLS));
-    for(let c=0;c<COLS;c++){if(!gaps.has(c))b[r][c]=rndColor();}
+    for(let c=0;c<COLS;c++){if(!gaps.has(c))b[r][c]={...rndColor()};}
   }
   return b;
 }
@@ -317,7 +317,7 @@ function clearLines(){
 function place(){
   piece.shape.forEach((row,ry)=>row.forEach((cell,cx)=>{
     const ny=piece.y+ry, nx=piece.x+cx;
-    if(cell&&ny>=0&&ny<ROWS&&nx>=0&&nx<COLS)board[ny][nx]=piece.color;
+    if(cell&&ny>=0&&ny<ROWS&&nx>=0&&nx<COLS)board[ny][nx]={...piece.color};
   }));
   const cleared=clearLines();
   if(cleared){
