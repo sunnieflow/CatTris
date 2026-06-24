@@ -302,10 +302,11 @@ function valid(p,dx,dy,sh){
     return nx>=0&&nx<COLS&&ny>=0&&ny<ROWS&&!(board[ny]&&board[ny][nx]);
   }));
 }
+function isFilled(cell){return cell!==0&&cell!==null&&cell!==undefined&&typeof cell==='object';}
 function clearLines(){
   let cleared=0;
   for(let r=ROWS-1;r>=0;){
-    if(board[r].every(cell=>!!cell)){
+    if(board[r].length===COLS&&board[r].every(cell=>isFilled(cell))){
       spawnRowParticles(r);
       board.splice(r,1);
       board.unshift(Array(COLS).fill(0));
@@ -326,7 +327,7 @@ function place(){
     score+=([0,100,300,500,800][cleared]||800)*level;
     if(lines>=level*5){
       level++;
-      dropInterval=Math.max(350,1400-level*100);
+      // 속도는 모든 단계에서 동일하게 고정
       playLevelUp();
       spawnLevelUpBurst();
     }
