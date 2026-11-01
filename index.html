@@ -6,7 +6,7 @@
 <title>캣트리스 🐱</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;min-height:100%;background:linear-gradient(135deg,#1a0a2e 0%,#2d1b4e 50%,#1a0a2e 100%);display:flex;align-items:center;justify-content:center;font-family:'Segoe UI',sans-serif;overflow-x:hidden;}
+html,body{width:100%;min-height:100%;background:linear-gradient(135deg,#1a0a2e 0%,#2d1b4e 50%,#1a0a2e 100%);display:flex;align-items:center;justify-content:center;font-family:'Noto Sans KR','Malgun Gothic','Apple SD Gothic Neo','Segoe UI',sans-serif;overflow-x:hidden;}
 #app{display:flex;flex-direction:column;align-items:center;gap:10px;padding:16px 0;}
 #game-title{font-size:24px;font-weight:900;color:#fff;letter-spacing:0.08em;text-shadow:0 0 18px rgba(255,180,255,0.9);}
 #top{display:flex;gap:8px;}
@@ -26,7 +26,38 @@ html,body{width:100%;min-height:100%;background:linear-gradient(135deg,#1a0a2e 0
 #drop-btn{width:160px;height:42px;font-size:13px;font-weight:800;letter-spacing:0.06em;border-radius:21px;background:linear-gradient(135deg,#ffb3ff,#d060e0);color:#fff;border:none;box-shadow:0 3px 12px rgba(200,80,255,0.4);cursor:pointer;}
 #drop-btn:active{transform:scale(0.95);}
 #hint{font-size:11px;color:rgba(255,200,255,0.5);text-align:center;margin-top:2px;}
+
+.sec{width:300px;max-width:92vw}
+.install-wrap{display:none;width:300px;max-width:92vw}
+.btn-install{width:100%;padding:12px;border:none;border-radius:22px;background:linear-gradient(135deg,#7aa8ff,#5a7ae0);color:#fff;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(90,122,224,.4)}
+.ios-guide{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;align-items:center;justify-content:center;padding:24px}
+.ios-guide.show{display:flex}
+.ios-guide .box{background:#2a0f4a;border:1px solid rgba(255,150,255,.35);border-radius:18px;padding:22px;max-width:320px;font-size:14px;line-height:1.8;color:rgba(255,230,255,.85);text-align:center}
+.ios-guide .box strong{color:#ffb3ff}
+.ios-guide .box button{margin-top:14px;padding:10px 36px;border:none;border-radius:20px;background:linear-gradient(135deg,#ffb3ff,#d060e0);color:#fff;font-weight:800;cursor:pointer}
+.toy-card{margin-top:22px;border-radius:14px;padding:14px;background:linear-gradient(135deg,#3a1a5e,#2a0f4a);border:1.5px solid rgba(255,150,255,.3)}
+.toy-one{display:flex;flex-direction:column;align-items:center;gap:6px;padding:14px 8px;border-radius:12px;text-decoration:none;background:rgba(255,255,255,.06);border:1px solid rgba(255,150,255,.25)}
+.toy-one:active{transform:scale(.97)}
+.toy-emoji{font-size:34px;line-height:1;letter-spacing:6px}
+.toy-label{font-size:14px;font-weight:800;color:#ffb3ff}
+.notice{margin-top:10px;font-size:10.5px;line-height:1.6;color:rgba(255,200,255,.55);text-align:center}
+.about{margin-top:18px;font-size:12px;line-height:1.8;color:rgba(255,230,255,.7);padding:14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)}
+.about h2{font-size:13px;color:#ffb3ff;margin-bottom:6px}
+.about p+p{margin-top:6px}
+.foot{margin:16px 0 8px;font-size:11px;color:rgba(255,200,255,.5);text-align:center;line-height:2}
+.foot a{color:rgba(255,200,255,.7)}
 </style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1a0a2e">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="캣트리스">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" href="icon-192.png">
+<meta name="description" content="고양이 울음소리가 나는 테트리스! 줄을 지울 때마다 냥~ 소리가 납니다.">
+<meta property="og:title" content="캣트리스 🐱">
+<meta property="og:description" content="고양이 울음소리가 나는 테트리스! 줄을 지울 때마다 냥~ 소리가 납니다.">
 </head>
 <body>
 <div id="app">
@@ -52,6 +83,27 @@ html,body{width:100%;min-height:100%;background:linear-gradient(135deg,#1a0a2e 0
     <button id="drop-btn">⬇ 한번에 내리기</button>
   </div>
   <div id="hint">← → 이동 &nbsp;|&nbsp; ↑ 회전 &nbsp;|&nbsp; 스페이스바 한번에 내리기</div>
+  <div class="install-wrap" id="installWrap"><button class="btn-install" id="installBtn">📲 홈 화면에 추가 (앱처럼 사용)</button></div>
+  <div class="sec toy-card">
+    <a class="toy-one" id="toyLink" href="https://link.coupang.com/a/ijATdWIxW0" target="_blank" rel="noopener sponsored">
+      <span class="toy-emoji">🪶🧸🐭</span>
+      <span class="toy-label">장난감</span>
+    </a>
+    <p class="notice">이 게시물은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.</p>
+  </div>
+  <div class="sec about">
+    <h2>캣트리스 소개</h2>
+    <p>캣트리스는 누구나 아는 블록 쌓기 퍼즐 게임입니다. 줄을 지울 때마다 고양이 울음소리가 납니다.</p>
+    <p><strong>조작법</strong> · 좌우 버튼으로 이동, ↑ 버튼으로 회전, ↓ 버튼으로 빠르게 내리기, 떨어뜨리기 버튼으로 한 번에 내립니다. 키보드는 방향키와 스페이스를 쓸 수 있습니다.</p>
+    <p><strong>점수</strong> · 가로 한 줄을 채우면 줄이 사라지고 점수를 얻습니다. 줄을 많이 지울수록 레벨이 올라 속도가 빨라집니다.</p>
+    <p><strong>공지</strong> · 이 게임은 이름, 사진, 위치 같은 개인정보를 수집하지 않습니다. 최고 점수는 내 기기에만 저장되며 서버로 전송되지 않습니다.</p>
+  </div>
+  <div class="foot">
+    <a href="./privacy.html">개인정보처리방침</a><br>
+    🐶 멍트리스도 해보세요
+  </div>
+  <div class="ios-guide" id="iosGuide"><div class="box"><p>아이폰에서는 <strong>Safari</strong>에서<br>아래 <strong>공유 버튼(□↑)</strong>을 누른 뒤<br><strong>"홈 화면에 추가"</strong>를 선택해 주세요.</p><button onclick="document.getElementById('iosGuide').classList.remove('show')">확인</button></div></div>
+
 </div>
 <script>
 const cv=document.getElementById('cv');
@@ -415,10 +467,10 @@ function gameOver(){
     ctx.fillStyle='rgba(10,5,30,0.88)';ctx.fillRect(0,0,W,H);
     ctx.textAlign='center';
     ctx.shadowColor='rgba(255,100,255,0.9)';ctx.shadowBlur=22;
-    ctx.fillStyle='#ffb3ff';ctx.font='800 28px sans-serif';
+    ctx.fillStyle='#ffb3ff';ctx.font='800 28px "Noto Sans KR","Malgun Gothic",sans-serif';
     ctx.fillText('게임 오버',W/2,H/2+10);
     ctx.shadowBlur=0;
-    ctx.fillStyle='rgba(255,255,255,0.85)';ctx.font='400 15px sans-serif';
+    ctx.fillStyle='rgba(255,255,255,0.85)';ctx.font='400 15px "Noto Sans KR","Malgun Gothic",sans-serif';
     ctx.fillText('점수: '+score,W/2,H/2+38);
     ctx.fillStyle='#ffb3ff';
     ctx.fillText(newRecord?'🎉 신기록!':'최고: '+best,W/2,H/2+64);
@@ -469,8 +521,32 @@ showBest();
 drawBg();
 ctx.textAlign='center';
 ctx.font='64px serif';ctx.fillText('🐱',W/2,H/2-20);
-ctx.fillStyle='rgba(255,200,255,0.7)';ctx.font='400 14px sans-serif';
+ctx.fillStyle='rgba(255,200,255,0.7)';ctx.font='400 14px "Noto Sans KR","Malgun Gothic",sans-serif';
 ctx.fillText('시작 버튼을 눌러주세요',W/2,H/2+30);
+
+// ── PWA: 서비스워커 등록 ──
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{navigator.serviceWorker.register('./sw.js').catch(e=>console.log('SW 오류:',e));});
+}
+// ── 홈 화면에 추가 버튼 ──
+let deferredPrompt=null;
+const installWrap=document.getElementById('installWrap');
+const installBtn=document.getElementById('installBtn');
+const isStandalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone||document.referrer.startsWith('android-app://');
+const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+if(!isStandalone){
+  if(isIOS) installWrap.style.display='block';
+  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;installWrap.style.display='block';});
+}
+window.addEventListener('appinstalled',()=>{installWrap.style.display='none';deferredPrompt=null;});
+installBtn.addEventListener('click',async()=>{
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    const {outcome}=await deferredPrompt.userChoice;
+    deferredPrompt=null;
+    if(outcome==='accepted') installWrap.style.display='none';
+  }else if(isIOS){document.getElementById('iosGuide').classList.add('show');}
+});
 </script>
 </body>
 </html>
